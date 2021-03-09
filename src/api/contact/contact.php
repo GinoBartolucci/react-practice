@@ -1,7 +1,5 @@
 <?php
 
-$email = $_POST['email'];
+$email = $_POST["mail"];
 
-echo json_encode('email: '.$email);
-
-?>
+echo json_encode('emaillll: ');

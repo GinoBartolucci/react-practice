@@ -1,5 +1,4 @@
 import {useState} from "react";
-import contact from "./../../api/contact/contact.php";
 
 export default function Contacto (){
     const [email, setEmail] = useState("");
@@ -8,14 +7,16 @@ export default function Contacto (){
     };
     
     
-    const handleFormSubmit =(event) =>{
+    const handleFormSubmit = async (event) =>{
         console.log(email);
-        const body = {email: email}
-        console.log(body);
+        let formData = new FormData();
+        formData.append("mail", email);
+        console.log(formData);
         event.preventDefault();
-        fetch({contact},{
+        await fetch("http://localhost:80/react-app-1/contact.php",{
+            mode: "no-cors",
             method: 'POST',
-            body: body,
+            body: formData,
         })
         .then(res => res.json())
         .then(datos => {console.log(datos)})
